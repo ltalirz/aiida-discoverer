@@ -1,0 +1,7 @@
+---
+- import_tasks: explorer.yml
+  tags: explorer
+- import_tasks: plots.yml
+  tags: plots
+  #- import_tasks: plotly.yml
+  #  tags: file_upload

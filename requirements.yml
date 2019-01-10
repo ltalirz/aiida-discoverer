@@ -1,4 +1,6 @@
 ---
+- src: marvel-nccr.simulationbase
+  version: master
 - src: marvel-nccr.editors
   version: master
 - src: marvel-nccr.ansible-prerequisites

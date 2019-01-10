@@ -19,6 +19,9 @@ ansible-galaxy install -r requirements.yml
 1. adapt path to your ssh key in corresponding `./host_vars/*.yml` file
 1. run `ansible-playbook playbook.yml`
 
+ * add deploy-standalone and conf to keys folder
+ * open ports 5000-5001 on target machine for ingoing traffic
+
 ### Comments
 
 In order to speed up things, everything is set up for the ubuntu user.

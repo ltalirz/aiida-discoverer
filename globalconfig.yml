@@ -9,7 +9,7 @@ vm_author_url: "http://nccr-marvel.ch"
 
 # VM configuration
 vm_hostname: "visualizer"
-vm_user: "max"
+vm_user: "ubuntu"
 # this is for AWS t2.large
 vm_memory: 8000
 vm_cpus: 2

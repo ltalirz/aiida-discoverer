@@ -1,0 +1,43 @@
+---
+- name: install recent docker python library
+  become: True
+  pip:
+    name: docker
+    state: present
+
+- name: clone aiida-explorer repo
+  git:
+    repo: https://github.com/materialscloud-org/aiida-explorer.git
+    dest: "{{ ansible_env.HOME }}/aiida-explorer"
+    accept_hostkey: yes
+    force: yes
+  register: git_checkout
+
+- name: Add deploy-key
+  copy:
+    src: "{{ item }}"
+    dest: "{{ ansible_env.HOME }}/aiida-explorer/keys"
+    mode: 0600
+  with_items:
+     - keys/deploy-standalone
+     - keys/config
+
+- name: build aiida-explorer docker image (can take several minutes)
+  become: True
+  docker_image:
+    path: "{{ ansible_env.HOME }}/aiida-explorer"
+    name: "aiida-explorer"
+    force: True
+    buildargs:
+        AIIDA_REST_API: "{{ visualizer_rest_api_url }}"
+
+- name: create aiida-explorer container
+  become: True
+  docker_container:
+    name: aiida-explorer
+    state: started
+    # This always keeps the container up (e.g. after reboot)
+    restart_policy: always
+    image: "aiida-explorer"
+    ports:
+      - "0.0.0.0:{{ visualizer_explore_port }}:80"

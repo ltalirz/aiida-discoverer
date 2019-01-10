@@ -39,6 +39,13 @@
   roles: 
     - role: common
       tags: common
+      #    - role: marvel-nccr.simulationbase
+      #      tags: simulationbase
+      #      vars:
+      #        simulationbase_vm_user: "{{ vm_user }}"
+      #        simulationbase_vm_user_public_key: "{{ lookup('file', './keys/molsim_2019.pub') }}"
+      #        simulationbase_hostname: "{{ vm_hostname }}"
+      #        simulationbase_codes_folder: "{{ vm_codes_folder }}"
     - role: marvel-nccr.editors
       tags: editors
 #    - role: aws_fixes
@@ -50,6 +57,7 @@
         aiida_code_folder: "{{ vm_codes_folder }}"
         aiida_localhost_cpus: "{{ vm_cpus }}"
         aiida_examples_folder: "{{ vm_examples_folder }}"
+        aiida_rest_service_enabled: true
     - role: marvel-nccr.aiidalab
       tags: aiidalab
       vars:
@@ -57,7 +65,12 @@
     - role: geerlingguy.apache
       become: True
       tags: apache
-    - role: geerlingguy.postgresql
-      become: True
     - role: geerlingguy.docker
       become: True
+      tags: docker
+      vars:
+        docker_users:
+          - "{{ ansible_user }}"
+    - role: visualizer
+      tags: visualizer
+
