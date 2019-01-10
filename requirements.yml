@@ -1,0 +1,19 @@
+---
+- src: marvel-nccr.editors
+  version: master
+- src: marvel-nccr.ansible-prerequisites
+  version: master
+- src: marvel-nccr.add-user
+  version: master
+- src: marvel-nccr.current-user
+  version: master
+- src: marvel-nccr.aiida
+  version: master
+- src: marvel-nccr.aiidalab
+  version: master
+- src: geerlingguy.apache
+  version: master
+- src: geerlingguy.postgresql
+  version: master
+- src: geerlingguy.docker
+  version: master

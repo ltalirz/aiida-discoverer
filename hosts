@@ -1,0 +1,2 @@
+[vms]
+visualizer-aws ansible_host=34.244.178.26 ansible_user=ubuntu

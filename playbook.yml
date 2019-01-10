@@ -1,0 +1,61 @@
+---
+- name: Install ansible prerequisites
+  hosts: vms
+  gather_facts: no
+  roles:
+    - marvel-nccr.ansible-prerequisites
+
+# Note: This play could be merged with "set up the VM" but it can make sense to
+# connect to the VM using the user created here. Leaving it separate for the moment.
+- name: Add vm user
+  hosts: vms
+  gather_facts: no
+  pre_tasks:
+    - name: import global variables
+      tags: always
+      include_vars:
+        file: globalconfig.yml
+    - name: test global config
+      debug:
+        msg: RUNNING PLAYBOOK FOR '{{ vm_name }}' VERSION '{{ vm_version }}'
+    - name: testing ansible environment
+      debug:
+        msg: Connecting to host '{{ inventory_hostname }}' as user '{{ ansible_user }}'
+  roles:
+         
+# Note: it is important to pass variables to roles within a 'vars' group
+# If they are passed on the same indentation level as the role, the variable is
+# set correctly inside the role, but following roles will read the *default*
+# value of the variable (as defined inside the role).
+- name: set up the VM
+  hosts: vms
+  pre_tasks:
+    - name: import global variables
+      tags: always
+      include_vars:
+        file: globalconfig.yml
+  vars:
+    - root_user: root
+  roles: 
+    - role: marvel-nccr.editors
+      tags: editors
+#    - role: aws_fixes
+#      tags: aws_fixes
+#      when: cloud_platform == 'aws'
+    - role: marvel-nccr.aiida
+      tags: aiida 
+      vars:
+        aiida_code_folder: "{{ vm_codes_folder }}"
+        aiida_localhost_cpus: "{{ vm_cpus }}"
+        aiida_examples_folder: "{{ vm_examples_folder }}"
+    - role: marvel-nccr.aiidalab
+      tags: aiidalab
+      vars:
+        aiidalab_headless: "{{ vm_headless }}"
+    - role: geerlingguy.apache
+      become: True
+      tags: apache
+    - role: geerlingguy.postgresql
+      become: True
+    - role: geerlingguy.docker
+      become: True

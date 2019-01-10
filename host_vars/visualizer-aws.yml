@@ -1,0 +1,2 @@
+ansible_ssh_common_args: -i ./keys/molsim_2019.pem -o StrictHostKeyChecking=no
+cloud_platform: aws

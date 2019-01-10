@@ -1,0 +1,18 @@
+---
+# Caution: This file is read by vagrant, ansible and bash
+vm_version: "18.06.0"
+vm_name: "visualizer"
+vm_description: "A Virtual Machine for Computational Materials Science"
+vm_url: "https://github.com/marvel-nccr/marvel-virtualmachine"
+vm_author: "MARVEL NCCR and MaX CoE"
+vm_author_url: "http://nccr-marvel.ch"
+
+# VM configuration
+vm_hostname: "visualizer"
+vm_user: "max"
+# this is for AWS t2.large
+vm_memory: 8000
+vm_cpus: 2
+vm_codes_folder: "${HOME}/codes"
+vm_examples_folder: "${HOME}/examples"
+vm_headless: True 
