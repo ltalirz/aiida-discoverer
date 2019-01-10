@@ -37,6 +37,8 @@
   vars:
     - root_user: root
   roles: 
+    - role: common
+      tags: common
     - role: marvel-nccr.editors
       tags: editors
 #    - role: aws_fixes

@@ -15,6 +15,7 @@ ansible-galaxy install -r requirements.yml
 
 ### Set up Virtual Machine
 
+1. put IP address of your server in `./hosts` file
 1. adapt path to your ssh key in corresponding `./host_vars/*.yml` file
 1. run `ansible-playbook playbook.yml`
 
