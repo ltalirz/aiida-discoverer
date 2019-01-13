@@ -39,6 +39,7 @@
   pip:
     name: "{{ ansible_env.HOME }}/bokeh-aiida-visualizer"
     virtualenv: "{{ aiida_venv }}"
+    editable: True
   register: pip_install
 
 

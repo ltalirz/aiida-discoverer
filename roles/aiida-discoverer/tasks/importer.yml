@@ -11,6 +11,7 @@
   pip:
     name: "{{ ansible_env.HOME }}/aiida-importer"
     virtualenv: "{{ aiida_venv }}"
+    editable: True
   register: pip_install
 
 - include_role:
