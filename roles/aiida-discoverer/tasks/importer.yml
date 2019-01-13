@@ -13,16 +13,22 @@
     virtualenv: "{{ aiida_venv }}"
   register: pip_install
 
-## Copy bokeh app
-#WORKDIR /project/discover-cofs
-#COPY figure ./figure
-#COPY detail ./detail
-#COPY select-figure ./select-figure
-#RUN ln -s /project/jmol-14.29.22/jsmol ./detail/static/jsmol
-#COPY setup.py import_db.py ./
-#RUN pip install -e .
-#COPY serve-app.sh /opt/
-#
-## start bokeh server
-#EXPOSE 5006
-#CMD ["/opt/serve-app.sh"]
+- include_role:
+    name: marvel-nccr.current-user
+  when: current_user is undefined
+
+- name: copy aiida-importer apache config
+  become: True
+  template:
+      src: "aiida-importer.conf"
+      dest: /etc/apache2/sites-available/aiida-importer.conf
+  vars:
+    daemon_user: "{{ current_user }}"
+    daemon_workdir: "{{ ansible_env.HOME }}/aiida-importer"
+    daemon_aiida_venv: "{{ aiida_venv |  regex_replace('\\$\\{HOME}', current_user_home) }}"
+
+- name: enable aiida-importer site
+  become: True
+  command: a2ensite aiida-importer
+  args:
+      creates:  /etc/apache2/sites-enabled/aiida-importer.conf

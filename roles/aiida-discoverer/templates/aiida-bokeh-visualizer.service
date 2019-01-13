@@ -7,7 +7,7 @@ After=network.target postgresql.service
 Type=simple
 # note: the default host 127.0.0.1 only allows access from within the VM
 ExecStart={{ daemon_aiida_venv }}/bin/bokeh serve figure --port {{ discoverer_bokeh_port }} --log-level debug --allow-websocket-origin "*" --use-xheaders
-WorkingDirectory={{ ansible_env.HOME }}/bokeh-aiida-visualizer
+WorkingDirectory={{ daemon_workdir }}
 
 User={{ daemon_user }}
 Group={{ daemon_user }}

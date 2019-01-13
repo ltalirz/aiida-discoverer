@@ -1,2 +1,21 @@
 ansible_ssh_common_args: -i ./keys/molsim_2019.pem -o StrictHostKeyChecking=no
 cloud_platform: aws
+
+
+#-------------  geerlingguy.apache config ---------#
+#apache_create_vhosts: true
+#apache_remove_default_vhost: true
+apache_listen_port: 80
+
+apache_packages:
+  - apache2
+  - apache2-utils
+  - libapache2-mod-wsgi
+
+apache_mods_enabled:
+  - rewrite.load
+  - ssl.load
+  - proxy.load
+  - proxy_http.load
+  - headers.load
+  - wsgi.load
