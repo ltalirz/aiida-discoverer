@@ -1,12 +1,14 @@
 # aiida-discoverer
 
-Server set up for AiiDA molsim tutorial 2019 including
+Ansible scripts for setting up the server used during the AiiDA molsim tutorial 2019.
+
+Includes:
 
  * AiiDA
  * REST API system service
  * EXPLORE docker container
  * bokeh-aiida-visualizer system service
- * plotly-file-upload system service
+ * plotly-file-upload apache site
 
 ### Prerequisites
 
@@ -26,7 +28,7 @@ ansible-galaxy install -r requirements.yml
 1. run `ansible-playbook playbook.yml`
 
  * add deploy-standalone and conf to keys folder
- * open ports 5000-5001 on target machine for ingoing traffic
+ * open ports 5000-5002 on target machine for ingoing traffic
 
 ### Comments
 
