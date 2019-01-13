@@ -1,0 +1,28 @@
+---
+- name: clone aiida-importer repo
+  git:
+    repo: https://github.com/ltalirz/aiida-importer
+    dest: "{{ ansible_env.HOME }}/aiida-importer"
+    accept_hostkey: yes
+    force: yes
+  register: git_checkout
+
+- name: Install pip packages
+  pip:
+    name: "{{ ansible_env.HOME }}/aiida-importer"
+    virtualenv: "{{ aiida_venv }}"
+  register: pip_install
+
+## Copy bokeh app
+#WORKDIR /project/discover-cofs
+#COPY figure ./figure
+#COPY detail ./detail
+#COPY select-figure ./select-figure
+#RUN ln -s /project/jmol-14.29.22/jsmol ./detail/static/jsmol
+#COPY setup.py import_db.py ./
+#RUN pip install -e .
+#COPY serve-app.sh /opt/
+#
+## start bokeh server
+#EXPOSE 5006
+#CMD ["/opt/serve-app.sh"]

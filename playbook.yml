@@ -71,6 +71,6 @@
       vars:
         docker_users:
           - "{{ ansible_user }}"
-    - role: visualizer
-      tags: visualizer
+    - role: aiida-discoverer
+      tags: aiida_discoverer
 

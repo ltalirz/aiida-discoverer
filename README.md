@@ -1,6 +1,12 @@
-# visualizer
+# aiida-discoverer
 
-Visualizer set up for molsim tutorial
+Server set up for AiiDA molsim tutorial 2019 including
+
+ * AiiDA
+ * REST API system service
+ * EXPLORE docker container
+ * bokeh-aiida-visualizer system service
+ * plotly-file-upload system service
 
 ### Prerequisites
 

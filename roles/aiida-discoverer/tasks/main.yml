@@ -1,0 +1,7 @@
+---
+- import_tasks: importer.yml
+  tags: importer
+- import_tasks: visualizer.yml
+  tags: visualizer
+- import_tasks: explorer.yml
+  tags: explorer

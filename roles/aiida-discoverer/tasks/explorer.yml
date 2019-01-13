@@ -29,7 +29,7 @@
     name: "aiida-explorer"
     force: True
     buildargs:
-        AIIDA_REST_API: "{{ visualizer_rest_api_url }}"
+        AIIDA_REST_API: "{{ discoverer_rest_url }}"
 
 - name: create aiida-explorer container
   become: True
@@ -40,4 +40,4 @@
     restart_policy: always
     image: "aiida-explorer"
     ports:
-      - "0.0.0.0:{{ visualizer_explore_port }}:80"
+      - "0.0.0.0:{{ discoverer_explore_port }}:80"

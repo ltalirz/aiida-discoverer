@@ -1,0 +1,6 @@
+---
+discoverer_rest_port: 5000
+discoverer_explore_port: 5001
+discoverer_bokeh_port: 5002
+
+discoverer_rest_url: "http://{{ ansible_host}}:{{ discoverer_rest_port }}/api/v2"

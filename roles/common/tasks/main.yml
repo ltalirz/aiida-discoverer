@@ -1,0 +1,29 @@
+---
+- name: set timezone to Europe/Zurich
+  become: true
+  timezone:
+    name: Europe/Zurich
+
+- name: apt update and upgrade (may take several minutes)
+  become: true
+  apt:
+    upgrade: yes
+    update_cache: yes
+    cache_valid_time: 86400 #One day
+
+- name: install fail2ban
+  become: true
+  apt:
+    name: fail2ban
+
+- name: install sendmail (for cron emails)
+  become: true
+  apt:
+    name: sendmail
+
+- name: configure LC_ALL
+  become: true
+  lineinfile:
+    path: /etc/bash.bashrc
+    state: present
+    line: 'export LC_ALL=C'
