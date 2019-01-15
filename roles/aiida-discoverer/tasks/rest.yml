@@ -1,0 +1,7 @@
+---
+- name: add cronjob to restart rest API every few minutes (has a tendency to get stuck...)
+  become: True
+  cron:
+    name: "restart aiida-rest"
+    minute: "*/5"
+    job: "/usr/sbin/service aiida-rest restart"

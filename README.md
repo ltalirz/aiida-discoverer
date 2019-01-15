@@ -34,6 +34,8 @@ ansible-galaxy install -r requirements.yml
 
 In order to speed up things, everything is set up for the ubuntu user.
 
+ * remember to restart the `aiida-rest` system service after switching profiles
+
 ## Acknowledgements
 
 This work is supported by the [MARVEL National Centre for Competency in

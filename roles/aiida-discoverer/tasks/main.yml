@@ -5,3 +5,5 @@
   tags: visualizer
 - import_tasks: explorer.yml
   tags: explorer
+- import_tasks: rest.yml
+  tags: rest
